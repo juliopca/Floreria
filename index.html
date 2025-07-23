@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Flores Multicolores - Arte y Pasión en Cada Ramo</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400&display=swap');
+
+        :root {
+            --primary-color: #8D6E63; /* Un tono tierra suave */
+            --secondary-color: #F5F5F5; /* Un gris muy claro para fondos */
+            --accent-color: #D4A59A; /* Un rosa empolvado como acento */
+            --text-dark: #333333;
+            --text-light: #FFFFFF;
+            --font-headings: 'Playfair Display', serif;
+            --font-body: 'Roboto', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-body);
+            margin: 0;
+            background-color: var(--secondary-color);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* --- Barra de Navegación --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background-color: transparent;
+            position: fixed;
+            width: 90%;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.4s ease, padding 0.4s ease;
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 5%;
+        }
+
+        .nav-logo {
+            font-family: var(--font-headings);
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+
+        .nav-links a {
+            margin: 0 1.5rem;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 400;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -5px;
+            left: 50%;
+            background-color: var(--accent-color);
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        /* --- Sección Hero --- */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: url('URL_DE_TU_IMAGEN_PRINCIPAL.jpg') no-repeat center center/cover;
+            text-align: center;
+            color: var(--text-light);
+            position: relative;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .hero-content {
+            z-index: 1;
+            animation: fadeIn 2s ease-out;
+        }
+
+        .hero h1 {
+            font-family: var(--font-headings);
+            font-size: 5rem;
+            margin: 0;
+            font-weight: 400;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* --- Contenedor General --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+        
+        .section-title {
+            font-family: var(--font-headings);
+            font-size: 2.8rem;
+            font-weight: 400;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #777;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- Catálogo --- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border: 1px solid #eee;
+            text-align: left;
+            overflow: hidden;
+            border-radius: 5px;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            background-color: #eee;
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-info h3 {
+            margin: 0 0 0.5rem 0;
+            font-family: var(--font-headings);
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: var(--primary-color);
+        }
+
+        .product-info .price {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .product-info .description {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-body);
+            font-weight: 400;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        /* --- Sección de Personalización --- */
+        #personalizar {
+            background-color: #fff;
+        }
+        
+        .custom-form-container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 3rem;
+            background-color: var(--secondary-color);
+            border-radius: 5px;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+            color: #555;
+        }
+
+        .form-group select, .form-group input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        
+        .flower-selection-item {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .flower-selection-item > div {
+            flex-grow: 1;
+        }
+        
+        .btn-add {
+            background-color: var(--accent-color);
+        }
+
+        /* --- WhatsApp y Footer --- */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .whatsapp-button:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+        }
+        
+        /* --- Animaciones y Responsividad --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        [data-aos] {
+            transition-duration: 1s !important;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Simplificar para el ejemplo */
+            .hero h1 { font-size: 3rem; }
+            .container { padding: 4rem 1rem; }
+        }
+
+    </style>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar" id="navbar">
+        <a href="#" class="nav-logo">Flores Multicolores</a>
+        <div class="nav-links">
+            <a href="#catalogo">Catálogo</a>
+            <a href="#personalizar">Personalizar</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Arte y Pasión en Cada Ramo</h1>
+            <p>Diseños florales que cuentan historias</p>
+        </div>
+    </section>
+
+    <div id="catalogo" class="container">
+        <h2 class="section-title">Nuestro Catálogo</h2>
+        <p class="section-subtitle">Cada ramo es diseñado con flores frescas de temporada, seleccionadas cuidadosamente para asegurar una belleza y durabilidad excepcionales.</p>
+        <div class="product-grid" id="product-grid">
+            <!-- Los productos se insertarán aquí dinámicamente -->
+        </div>
+    </div>
+    
+    <section id="personalizar" class="container">
+        <h2 class="section-title">Crea Tu Ramo Perfecto</h2>
+        <p class="section-subtitle">Combina tus flores favoritas, la cantidad y la envoltura. Nosotros nos encargamos de crear una composición armoniosa y única para ti.</p>
+        <div class="custom-form-container">
+            <div id="flower-selections">
+                <div class="flower-selection-item">
+                    <div class="form-group">
+                        <label for="flower-type-1">Tipo de Flor</label>
+                        <select class="flower-type" id="flower-type-1">
+                            <option value="Rosa (Roja)">Rosa (Roja)</option>
+                            <option value="Rosa (Rosada)">Rosa (Rosada)</option>
+                            <option value="Rosa (Blanca)">Rosa (Blanca)</option>
+                            <option value="Rosa (Azul)">Rosa (Azul)</option>
+                            <option value="Rosa (Violeta)">Rosa (Violeta)</option>
+                            <option value="Girasol">Girasol</option>
+                            <option value="Astromelia">Astromelia</option>
+                            <option value="Lirio Oriental">Lirio Oriental</option>
+                            <option value="Gypsophila (Lluvia)">Gypsophila (Lluvia)</option>
+                            <option value="Eucalipto (Follaje)">Eucalipto (Follaje)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="flower-quantity-1">Cantidad</label>
+                        <input type="number" class="flower-quantity" id="flower-quantity-1" min="1" value="3">
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-add" onclick="addFlowerSelection()">+ Añadir Otra Flor</button>
+            
+            <hr style="margin: 2rem 0; border: 1px solid #eee;">
+
+            <div class="form-group">
+                <label for="wrapping-paper">Elige el Papel de Envoltura</label>
+                <select id="wrapping-paper">
+                    <option value="Papel Coreano (Negro)">Papel Coreano (Negro)</option>
+                    <option value="Papel Coreano (Blanco)">Papel Coreano (Blanco)</option>
+                    <option value="Papel Rojo">Papel Rojo</option>
+                    <option value="Papel Negro">Papel Negro</option>
+                    <option value="Papel Gris">Papel Gris</option>
+                    <option value="Sin envoltura especial">Sin envoltura especial</option>
+                </select>
+            </div>
+
+            <button class="btn" onclick="sendCustomOrder()" style="margin-top: 1rem;">Pedir Mi Ramo por WhatsApp</button>
+        </div>
+    </section>
+
+    <footer id="contacto">
+        <p>&copy; 2025 Florería JuliAN. Todos los derechos reservados. Diseño con amor.</p>
+    </footer>
+
+    <a href="#" id="whatsapp-link" class="whatsapp-button" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
+            <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05s-.843-.312-1.604-.995c-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.1-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-0.943.164-.464.164-.86.114-.943s-.182-.133-.38-.232z"/>
+        </svg>
+    </a>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // --- INICIALIZACIÓN DE ANIMACIONES ---
+        AOS.init({
+            once: true,
+            offset: 50,
+            delay: 100,
+        });
+
+        // --- EFECTO NAVBAR AL HACER SCROLL ---
+        const navbar = document.getElementById('navbar');
+        window.onscroll = () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        };
+
+        // --- DATOS DEL CATÁLOGO (¡AQUÍ DEBES PONER TUS IMÁGENES Y PRECIOS!) ---
+        const products = [
+            { 
+                id: 1, 
+                name: 'Abrazo de Sol', 
+                price: 0.00, 
+                image: 'URL_DE_TU_IMAGEN_AQUI_1.jpeg', 
+                description: 'Un vibrante girasol es el protagonista, rodeado por la pasión de intensas rosas rojas. Un detalle de gypsophila blanca aporta luz y delicadeza. Ideal para alegrar el día y expresar un cariño radiante.' 
+            },
+            { 
+                id: 2, 
+                name: 'Corazón Clásico', 
+                price: 0.00, 
+                image: 'URL_DE_TU_IMAGEN_AQUI_2.jpeg', 
+                description: 'La elegancia atemporal de una docena de rosas rojas se combina con delicadas astromelias y una nube de gypsophila. Un ramo que habla de amor y admiración en su forma más pura.'
+            },
+            { 
+                id: 3, 
+                name: 'Dulce Sentimiento', 
+                price: 0.00, 
+                image: 'URL_DE_TU_IMAGEN_AQUI_3.jpeg', 
+                description: 'Una encantadora combinación de rosas rojas y rosadas que evoca ternura y afecto. La gypsophila añade un toque soñador, perfecto para un detalle romántico y delicado.' 
+            },
+            { 
+                id: 4, 
+                name: 'Cielo Estrellado', 
+                price: 0.00, 
+                image: 'URL_DE_TU_IMAGEN_AQUI_4.jpeg', 
+                description: 'Un diseño audaz y único que une la energía de los girasoles con el misterio de las rosas azules. Un ramo inolvidable para sorprender y expresar sentimientos profundos y originales.'
+            },
+            { 
+                id: 5, 
+                name: 'Atardecer Dorado', 
+                price: 0.00, 
+                image: 'URL_DE_TU_IMAGEN_AQUI_5.jpeg', 
+                description: 'La calidez de los girasoles se fusiona con el romanticismo de las rosas rojas y la sutileza de las astromelias. Un arreglo lleno de color y vida, ideal para celebrar momentos especiales.'
+            },
+            { 
+                id: 6, 
+                name: 'Jardín Secreto', 
+                price: 0.00, 
+                image: 'URL_DE_TU_IMAGEN_AQUI_6.jpeg', 
+                description: 'Un exuberante mix de flores que captura la esencia de un jardín en flor. Girasoles, rosas, astromelias y toques de color crean una composición alegre y llena de sorpresas.' 
+            },
+            { 
+                id: 7, 
+                name: 'Fuego y Coral', 
+                price: 0.00, 
+                image: 'URL_DE_TU_IMAGEN_AQUI_7.jpeg', 
+                description: 'La intensidad de las rosas rojas se matiza con la calidez de tonos coral. Un ramo moderno y sofisticado, envuelto con elegancia para una impresión memorable.'
+            },
+            { 
+                id: 8, 
+                name: 'Rayo de Luz', 
+                price: 0.00, 
+                image: 'URL_DE_TU_IMAGEN_AQUI_8.jpeg', 
+                description: 'Girasoles brillantes y astromelias frescas se unen al toque aromático del eucalipto. Un ramo que transmite optimismo, frescura y buenos deseos, con un acabado moderno.' 
+            },
+            { 
+                id: 9, 
+                name: 'Noticia de Amor', 
+                price: 0.00, 
+                image: 'URL_DE_TU_IMAGEN_AQUI_9.jpeg', 
+                description: 'Un detalle con encanto vintage. Cinco rosas rojas clásicas acompañadas de eucalipto, envueltas en papel tipo periódico para un regalo original y lleno de estilo.' 
+            },
+            { 
+                id: 10, 
+                name: 'Contraste Delicado', 
+                price: 0.00, 
+                image: 'URL_DE_TU_IMAGEN_AQUI_10.jpeg', 
+                description: 'La pureza de las rosas color crema se encuentra con la alegre intensidad de las gerberas rojas. Un ramo equilibrado y con encanto, ideal para expresar gratitud o amistad.' 
+            },
+             { 
+                id: 11, 
+                name: 'Pasión Intensa', 
+                price: 0.00, 
+                image: 'URL_DE_TU_IMAGEN_AQUI_11.jpeg', 
+                description: 'Siete rosas rojas, símbolo de la pasión, rodeadas por un delicado halo de flores blancas que resaltan su intensidad. Un clásico elegante y directo al corazón.' 
+            }
+        ];
+
+        // --- LÓGICA DE PEDIDOS (No necesitas tocar nada aquí) ---
+        const WHATSAPP_NUMBER = '51978743795';
+
+        const productGrid = document.getElementById('product-grid');
+        products.forEach(product => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.setAttribute('data-aos', 'fade-up');
+            card.innerHTML = `
+                <img src="${product.image}" alt="${product.name}" class="product-image">
+                <div class="product-info">
+                    <h3>${product.name}</h3>
+                    <p class="price">S/. ${product.price.toFixed(2)}</p>
+                    <p class="description">${product.description}</p>
+                    <button class="btn" onclick="orderProduct(${product.id})">Pedir por WhatsApp</button>
+                </div>
+            `;
+            productGrid.appendChild(card);
+        });
+
+        function orderProduct(productId) {
+            const product = products.find(p => p.id === productId);
+            const message = `¡Hola Florería JuliAN! ✨ Me encantaría pedir el ramo "${product.name}". ¡Gracias!`;
+            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        let flowerSelectionCount = 1;
+        function addFlowerSelection() {
+            flowerSelectionCount++;
+            const newSelection = document.createElement('div');
+            newSelection.className = 'flower-selection-item';
+            newSelection.setAttribute('data-aos', 'fade-left');
+            newSelection.innerHTML = `
+                <div class="form-group">
+                    <label for="flower-type-${flowerSelectionCount}">Tipo de Flor</label>
+                    <select class="flower-type" id="flower-type-${flowerSelectionCount}">
+                        <option value="Rosa (Roja)">Rosa (Roja)</option>
+                        <option value="Rosa (Rosada)">Rosa (Rosada)</option>
+                        <option value="Rosa (Blanca)">Rosa (Blanca)</option>
+                        <option value="Rosa (Azul)">Rosa (Azul)</option>
+                        <option value="Rosa (Violeta)">Rosa (Violeta)</option>
+                        <option value="Girasol">Girasol</option>
+                        <option value="Astromelia">Astromelia</option>
+                        <option value="Lirio Oriental">Lirio Oriental</option>
+                        <option value="Gypsophila (Lluvia)">Gypsophila (Lluvia)</option>
+                        <option value="Eucalipto (Follaje)">Eucalipto (Follaje)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="flower-quantity-${flowerSelectionCount}">Cantidad</label>
+                    <input type="number" class="flower-quantity" id="flower-quantity-${flowerSelectionCount}" min="1" value="1">
+                </div>
+            `;
+            document.getElementById('flower-selections').appendChild(newSelection);
+        }
+
+        function sendCustomOrder() {
+            const flowerItems = document.querySelectorAll('.flower-selection-item');
+            const wrappingPaper = document.getElementById('wrapping-paper').value;
+            let message = '¡Hola Florería JuliAN! ✨ Quisiera un ramo personalizado con lo siguiente:\n';
+            
+            message += '\n*FLORES:*\n';
+            flowerItems.forEach(item => {
+                const type = item.querySelector('.flower-type').value;
+                const quantity = item.querySelector('.flower-quantity').value;
+                message += `- ${quantity} x ${type}\n`;
+            });
+            
+            message += `\n*ENVOLTURA:*\n- ${wrappingPaper}\n`;
+            message += '\n¡Espero vuestra cotización! Gracias.';
+            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        document.getElementById('whatsapp-link').href = `https://wa.me/${WHATSAPP_NUMBER}`;
+    </script>
+</body>
+</html>
