@@ -170,7 +170,6 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
 
-        /* ESTILO DE IMAGEN MANTENIDO COMO PREFERÍAS */
         .product-image {
             width: 100%;
             height: 350px;
@@ -193,12 +192,6 @@
             font-size: 1.6rem;
             font-weight: 400;
             color: var(--primary-color);
-        }
-
-        .product-info .price {
-            font-size: 1.2rem;
-            color: var(--accent-color);
-            margin-bottom: 1rem;
         }
 
         .product-info .description {
@@ -277,6 +270,56 @@
             background-color: var(--accent-color);
         }
 
+        /* --- Sección de Delivery --- */
+        .delivery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .delivery-card {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 5px;
+            border: 1px solid #eee;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .delivery-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        }
+        
+        .delivery-icon {
+            color: var(--primary-color);
+            width: 50px;
+            height: 50px;
+            margin-bottom: 1rem;
+        }
+
+        .delivery-card h3 {
+            font-family: var(--font-headings);
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+        
+        .delivery-districts {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+            min-height: 70px; /* Asegura altura uniforme */
+        }
+
+        .delivery-note {
+            font-style: italic;
+            color: #777;
+            margin-top: 2rem;
+        }
+
         /* --- WhatsApp y Footer --- */
         .whatsapp-button {
             position: fixed;
@@ -319,7 +362,7 @@
         }
         
         @media (max-width: 768px) {
-            .nav-links { display: none; } /* Simplificar para el ejemplo */
+            .nav-links { display: none; }
             .hero h1 { font-size: 3rem; }
             .container { padding: 4rem 1rem; }
         }
@@ -334,6 +377,7 @@
         <div class="nav-links">
             <a href="#catalogo">Catálogo</a>
             <a href="#personalizar">Personalizar</a>
+            <a href="#delivery">Delivery</a>
             <a href="#contacto">Contacto</a>
         </div>
     </nav>
@@ -396,12 +440,42 @@
                 </select>
             </div>
 
-            <button class="btn" onclick="sendCustomOrder()" style="margin-top: 1rem;">Pedir Mi Ramo por WhatsApp</button>
+            <button class="btn" onclick="sendCustomOrder()">Cotizar por WhatsApp</button>
         </div>
     </section>
 
+    <section id="delivery" class="container" data-aos="fade-up">
+        <h2 class="section-title">Servicio de Delivery</h2>
+        <p class="section-subtitle">Llevamos tus flores con el mayor cuidado. El costo del delivery se calcula según la distancia. ¡Consúltanos por WhatsApp para darte una cotización exacta!</p>
+        
+        <div class="delivery-grid">
+            <!-- Tarjeta 1: Zona Centro -->
+            <div class="delivery-card" data-aos="fade-up" data-aos-delay="100">
+                <svg class="delivery-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M11.5 2.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h1zM14.5 3a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1z"/><path d="M1.5 8a.5.5 0 0 0-.5.5V12a1 1 0 0 0 1 1h1.414a1 1 0 0 0 .707-.293l.531-.531a.5.5 0 0 1 .707 0L6.146 13.5l.707-.707a.5.5 0 0 1 .707 0L9.293 14.5l.707-.707a.5.5 0 0 1 .707 0l1.414 1.414a1 1 0 0 0 .707.293h.586a1 1 0 0 0 1-1V8.5a.5.5 0 0 0-.5-.5h-13zM2 9.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/></svg>
+                <h3>Lima Centro y Alrededores</h3>
+                <p class="delivery-districts">Distritos como Cercado de Lima, Breña, Jesús María, Lince, Pueblo Libre, La Victoria, Rímac y aledaños.</p>
+            </div>
+
+            <!-- Tarjeta 2: Zona Moderna y Costa Verde -->
+            <div class="delivery-card" data-aos="fade-up" data-aos-delay="200">
+                <svg class="delivery-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M13.533 2.822a.5.5 0 0 1 .11.284v1.834a.5.5 0 0 1-.11.284l-1.834 1.833a.5.5 0 0 1-.284.11H1.5a.5.5 0 0 1-.5-.5V3.106a.5.5 0 0 1 .11-.284L2.946.977a.5.5 0 0 1 .284-.11h10.018a.5.5 0 0 1 .284.11l1.834 1.834zM12 4.146 13.354 5.5H8.5a.5.5 0 0 1 0-1h3.5v-.354zM2.646 2.5 1.5 3.646V6h11V3.646L11.354 2.5H2.646z"/><path d="M11.182 8.363a.5.5 0 0 1 .318.454v2.865a.5.5 0 0 1-1 0V9.137a.5.5 0 0 1 .128-.35l.293-.293a.5.5 0 0 1 .354-.128s.053.003.107.011h.386zM3.467 8.128a.5.5 0 0 1 .454-.318h2.865a.5.5 0 0 1 0 1H4.283a.5.5 0 0 1-.35-.128l-.293-.293a.5.5 0 0 1-.128-.35zM8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+                <h3>Lima Moderna y Playas</h3>
+                <p class="delivery-districts">Miraflores, San Isidro, San Borja, Magdalena, San Miguel, Surquillo, Barranco y Chorrillos.</p>
+            </div>
+
+            <!-- Tarjeta 3: Zona Norte, Sur y Este -->
+            <div class="delivery-card" data-aos="fade-up" data-aos-delay="300">
+                <svg class="delivery-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M6 1a1 1 0 0 0-1 1v1H1.5a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H11V2a1 1 0 0 0-1-1H6z"/><path fill-rule="evenodd" d="M0 5.5A1.5 1.5 0 0 1 1.5 4h13A1.5 1.5 0 0 1 16 5.5v5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 10.5v-5zM1.5 5a.5.5 0 0 0-.5.5v5a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-5a.5.5 0 0 0-.5-.5h-13z"/><path d="M8 14a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>
+                <h3>Lima Norte, Sur y Este</h3>
+                <p class="delivery-districts">Cobertura en Surco, La Molina, Los Olivos, S.J.L., Ate, Callao y más. ¡Consulta por tu distrito!</p>
+            </div>
+        </div>
+        <p class="delivery-note">Para conocer la cotización exacta de tu envío, indícanos la dirección de entrega al realizar tu pedido por WhatsApp.</p>
+    </section>
+
+
     <footer id="contacto">
-        <p>© 2025 Florería JuliAN. Todos los derechos reservados. Diseño con amor.</p>
+        <p>© 2025 Flores Multicolores. Todos los derechos reservados. Diseño con amor.</p>
     </footer>
 
     <a href="#" id="whatsapp-link" class="whatsapp-button" target="_blank">
@@ -429,95 +503,83 @@
             }
         };
 
-        // --- DATOS DEL CATÁLOGO ---
+        // --- DATOS DEL CATÁLOGO (SIN PRECIOS) ---
         const products = [
             { 
                 id: 1, 
                 name: 'Abrazo de Sol', 
-                price: 40.00, 
                 image: 'URL_DE_TU_IMAGEN_AQUI_1.jpeg', 
                 description: 'Un vibrante girasol es el protagonista, rodeado por la pasión de intensas rosas rojas. Un detalle de gypsophila blanca aporta luz y delicadeza. Ideal para alegrar el día y expresar un cariño radiante.' 
             },
             { 
                 id: 2, 
                 name: 'Corazón Clásico', 
-                price: 60.00, 
                 image: 'URL_DE_TU_IMAGEN_AQUI_2.jpeg', 
                 description: 'La elegancia atemporal de una docena de rosas rojas se combina con delicadas astromelias y una nube de gypsophila. Un ramo que habla de amor y admiración en su forma más pura.'
             },
             { 
                 id: 3, 
                 name: 'Dulce Sentimiento', 
-                price: 35.00, 
                 image: 'URL_DE_TU_IMAGEN_AQUI_3.jpeg', 
                 description: 'Una encantadora combinación de rosas rojas y rosadas que evoca ternura y afecto. La gypsophila añade un toque soñador, perfecto para un detalle romántico y delicado.' 
             },
             { 
                 id: 4, 
                 name: 'Cielo Estrellado', 
-                price: 55.00, 
                 image: 'URL_DE_TU_IMAGEN_AQUI_4.jpeg', 
                 description: 'Un diseño audaz y único que une la energía de los girasoles con el misterio de las rosas azules. Un ramo inolvidable para sorprender y expresar sentimientos profundos y originales.'
             },
             { 
                 id: 5, 
                 name: 'Atardecer Dorado', 
-                price: 65.00, 
                 image: 'URL_DE_TU_IMAGEN_AQUI_5.jpeg', 
                 description: 'La calidez de los girasoles se fusiona con el romanticismo de las rosas rojas y la sutileza de las astromelias. Un arreglo lleno de color y vida, ideal para celebrar momentos especiales.'
             },
             { 
                 id: 6, 
                 name: 'Jardín Secreto', 
-                price: 70.00, 
                 image: 'URL_DE_TU_IMAGEN_AQUI_6.jpeg', 
                 description: 'Un exuberante mix de flores que captura la esencia de un jardín en flor. Girasoles, rosas, astromelias y toques de color crean una composición alegre y llena de sorpresas.' 
             },
             { 
                 id: 7, 
                 name: 'Fuego y Coral', 
-                price: 60.00, 
                 image: 'URL_DE_TU_IMAGEN_AQUI_7.jpeg', 
                 description: 'La intensidad de las rosas rojas se matiza con la calidez de tonos coral. Un ramo moderno y sofisticado, envuelto con elegancia para una impresión memorable.'
             },
             { 
                 id: 8, 
                 name: 'Rayo de Luz', 
-                price: 35.00, 
                 image: 'URL_DE_TU_IMAGEN_AQUI_8.jpeg', 
                 description: 'Girasoles brillantes y astromelias frescas se unen al toque aromático del eucalipto. Un ramo que transmite optimismo, frescura y buenos deseos, con un acabado moderno.' 
             },
             { 
                 id: 9, 
                 name: 'Noticia de Amor', 
-                price: 30.00, 
                 image: 'URL_DE_TU_IMAGEN_AQUI_9.jpeg', 
                 description: 'Un detalle con encanto vintage. Cinco rosas rojas clásicas acompañadas de eucalipto, envueltas en papel tipo periódico para un regalo original y lleno de estilo.' 
             },
             { 
                 id: 10, 
                 name: 'Contraste Delicado', 
-                price: 35.00, 
                 image: 'URL_DE_TU_IMAGEN_AQUI_10.jpeg', 
                 description: 'La pureza de las rosas color crema se encuentra con la alegre intensidad de las gerberas rojas. Un ramo equilibrado y con encanto, ideal para expresar gratitud o amistad.' 
             },
              { 
                 id: 11, 
                 name: 'Pasión Intensa', 
-                price: 40.00, 
                 image: 'URL_DE_TU_IMAGEN_AQUI_11.jpeg', 
                 description: 'Siete rosas rojas, símbolo de la pasión, rodeadas por un delicado halo de flores blancas que resaltan su intensidad. Un clásico elegante y directo al corazón.' 
             },
             { 
                 id: 12, 
-                name: 'Sol y Pasión', 
-                price: 65.00, 
+                name: 'Fusión Apasionada', 
                 image: 'URL_DE_TU_IMAGEN_AQUI_12.jpeg', 
-                description: 'La energía y alegría de los girasoles se unen al romanticismo clásico de las rosas rojas. Este ramo es el equilibrio perfecto para expresar un cariño profundo, lleno de luz y pasión. Ideal para celebrar un aniversario o simplemente para recordarle a esa persona especial cuánto sol trae a tu vida.'
+                description: 'La intensidad de las rosas rojas se encuentra con la calidez y energía de las rosas coral. Un ramo vibrante y moderno, perfecto para una sorpresa llena de vida y color.'
             }
         ];
 
-        // --- LÓGICA DE PEDIDOS (No necesitas tocar nada aquí) ---
+        // --- LÓGICA DE PEDIDOS ---
         const WHATSAPP_NUMBER = '51978743795';
 
         const productGrid = document.getElementById('product-grid');
@@ -525,13 +587,13 @@
             const card = document.createElement('div');
             card.className = 'product-card';
             card.setAttribute('data-aos', 'fade-up');
+            // SE ELIMINÓ LA LÍNEA DE PRECIO DEL HTML
             card.innerHTML = `
                 <img src="${product.image}" alt="${product.name}" class="product-image">
                 <div class="product-info">
                     <h3>${product.name}</h3>
-                    <p class="price">S/. ${product.price.toFixed(2)}</p>
                     <p class="description">${product.description}</p>
-                    <button class="btn" onclick="orderProduct(${product.id})">Pedir por WhatsApp</button>
+                    <button class="btn" onclick="orderProduct(${product.id})">Consultar por WhatsApp</button>
                 </div>
             `;
             productGrid.appendChild(card);
@@ -539,7 +601,7 @@
 
         function orderProduct(productId) {
             const product = products.find(p => p.id === productId);
-            const message = `¡Hola Florería JuliAN! ✨ Me encantaría pedir el ramo "${product.name}". ¡Gracias!`;
+            const message = `¡Hola Flores Multicolores! ✨ Quisiera consultar por el ramo "${product.name}". ¡Gracias!`;
             const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
         }
@@ -577,7 +639,7 @@
         function sendCustomOrder() {
             const flowerItems = document.querySelectorAll('.flower-selection-item');
             const wrappingPaper = document.getElementById('wrapping-paper').value;
-            let message = '¡Hola Florería JuliAN! ✨ Quisiera un ramo personalizado con lo siguiente:\n';
+            let message = '¡Hola Flores Multicolores! ✨ Quisiera cotizar un ramo personalizado con lo siguiente:\n';
             
             message += '\n*FLORES:*\n';
             flowerItems.forEach(item => {
@@ -587,7 +649,7 @@
             });
             
             message += `\n*ENVOLTURA:*\n- ${wrappingPaper}\n`;
-            message += '\n¡Espero vuestra cotización! Gracias.';
+            message += '\n¡Espero su cotización! Gracias.';
             const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
         }
